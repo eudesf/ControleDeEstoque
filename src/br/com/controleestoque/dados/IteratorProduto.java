@@ -1,6 +1,6 @@
-package br.com.controleestoque.iterators;
+package br.com.controleestoque.dados;
 
-import br.com.controleestoque.classesbasicas.Produto;
+import br.com.controleestoque.banco.Produto;
 
 public class IteratorProduto {
 	

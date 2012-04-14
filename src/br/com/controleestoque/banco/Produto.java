@@ -1,11 +1,10 @@
-package br.com.controleestoque.classesbasicas;
+package br.com.controleestoque.banco;
 
 public class Produto {
 	
 	private String codigo;
 	private String descricao;
 	private Double preco;
-	
 	
 	public String getCodigo() {
 		return codigo;
