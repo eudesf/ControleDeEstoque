@@ -1,4 +1,4 @@
-package br.com.controleestoque.banco;
+package br.com.ceut.controleestoque.produto;
 
 @SuppressWarnings("serial")
 public class ProdutoNaoEncontrado extends Exception {

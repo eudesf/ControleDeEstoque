@@ -1,7 +1,5 @@
-package br.com.controleestoque.dados;
+package br.com.ceut.controleestoque.produto;
 
-import br.com.controleestoque.banco.Produto;
-import br.com.controleestoque.banco.ProdutoNaoEncontrado;
 
 public class RepositorioProdutoLista implements RepositorioProduto  {
 	

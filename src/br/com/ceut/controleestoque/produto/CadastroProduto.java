@@ -1,6 +1,5 @@
-package br.com.controleestoque.banco;
+package br.com.ceut.controleestoque.produto;
 
-import br.com.controleestoque.dados.RepositorioProduto;
 
 public class CadastroProduto {
 
