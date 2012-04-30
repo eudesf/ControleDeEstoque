@@ -1,11 +1,11 @@
 package br.com.ceut.controleestoque.fachada;
 
-import br.com.ceut.controleestoque.funcionario.CadastroFuncionarios;
-import br.com.ceut.controleestoque.funcionario.Funcionario;
-import br.com.ceut.controleestoque.funcionario.FuncionarioJaCadastradoException;
-import br.com.ceut.controleestoque.funcionario.FuncionarioNaoEncontradoException;
-import br.com.ceut.controleestoque.funcionario.RepositorioFuncionarios;
-import br.com.ceut.controleestoque.funcionario.RepositorioFuncionariosArray;
+import br.com.ceut.controleestoque.funcionarios.CadastroFuncionarios;
+import br.com.ceut.controleestoque.funcionarios.Funcionario;
+import br.com.ceut.controleestoque.funcionarios.FuncionarioJaCadastradoException;
+import br.com.ceut.controleestoque.funcionarios.FuncionarioNaoEncontradoException;
+import br.com.ceut.controleestoque.funcionarios.RepositorioFuncionarios;
+import br.com.ceut.controleestoque.funcionarios.RepositorioFuncionariosArray;
 import br.com.ceut.controleestoque.util.RepositorioException;
 
 public class Empresa {

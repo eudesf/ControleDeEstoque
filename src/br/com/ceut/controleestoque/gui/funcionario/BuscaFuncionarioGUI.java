@@ -14,15 +14,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.ceut.controleestoque.funcionario.CadastroFuncionarios;
-import br.com.ceut.controleestoque.funcionario.Funcionario;
-import br.com.ceut.controleestoque.funcionario.FuncionarioJaCadastradoException;
-import br.com.ceut.controleestoque.funcionario.FuncionarioNaoEncontradoException;
-import br.com.ceut.controleestoque.funcionario.IteratorFuncionarios;
-import br.com.ceut.controleestoque.funcionario.RepositorioFuncionariosArray;
+import br.com.ceut.controleestoque.funcionarios.CadastroFuncionarios;
+import br.com.ceut.controleestoque.funcionarios.Funcionario;
+import br.com.ceut.controleestoque.funcionarios.FuncionarioJaCadastradoException;
+import br.com.ceut.controleestoque.funcionarios.FuncionarioNaoEncontradoException;
+import br.com.ceut.controleestoque.funcionarios.IteratorFuncionarios;
+import br.com.ceut.controleestoque.funcionarios.RepositorioFuncionariosArray;
 import br.com.ceut.controleestoque.util.RepositorioException;
 import javax.swing.JScrollPane;
 
@@ -102,8 +103,15 @@ public class BuscaFuncionarioGUI extends JFrame {
 		panel.add(btnSair);
 		
 		
-		table = new JTable();
+		table = new JTable() {
+			@Override
+			public boolean isCellEditable(int arg0, int arg1) {
+				return false;
+			}
+		};
+		table.setSurrendersFocusOnKeystroke(true);
 		table.setFillsViewportHeight(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		JScrollPane scroll = new JScrollPane(table);
 		contentPane.add(scroll, BorderLayout.CENTER);
@@ -174,9 +182,9 @@ public class BuscaFuncionarioGUI extends JFrame {
 			JOptionPane.showMessageDialog(this, "Selecione o funcion‡rio a ser editado!");
 		} else {
 			CadastroFuncionarioGUI gui = new CadastroFuncionarioGUI(funcionariosReference.get(table.getSelectedRow()));
+			gui.getMatriculaField().setEnabled(false);
+			gui.setVisible(true);
 			if (gui.getFuncionario() != null) {
-				gui.getMatriculaField().setEnabled(false);
-				gui.setVisible(true);
 				try {
 					cadastroFuncionarios.atualizar(gui.getFuncionario());
 				} catch (FuncionarioNaoEncontradoException e) {
@@ -190,13 +198,17 @@ public class BuscaFuncionarioGUI extends JFrame {
 	}
 	
 	private void remover() {
-		try {
-			cadastroFuncionarios.remover(funcionariosReference.get(table.getSelectedRow()).getMatricula());
-			refreshTable();
-		} catch (FuncionarioNaoEncontradoException e) {
-			JOptionPane.showMessageDialog(this, "O funcion‡rio selecionado n‹o foi encontrado!");
-		} catch (RepositorioException e) {
-			JOptionPane.showMessageDialog(this, "N‹o foi poss’vel remover este funcion‡rio!");
+		if (table.getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(this, "Selecione o funcion‡rio a ser removido!");
+		} else {
+			try {
+				cadastroFuncionarios.remover(funcionariosReference.get(table.getSelectedRow()).getMatricula());
+				refreshTable();
+			} catch (FuncionarioNaoEncontradoException e) {
+				JOptionPane.showMessageDialog(this, "O funcion‡rio selecionado n‹o foi encontrado!");
+			} catch (RepositorioException e) {
+				JOptionPane.showMessageDialog(this, "N‹o foi poss’vel remover este funcion‡rio!");
+			}
 		}
 	}
 }

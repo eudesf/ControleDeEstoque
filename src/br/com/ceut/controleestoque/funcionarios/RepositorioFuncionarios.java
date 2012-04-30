@@ -1,4 +1,4 @@
-package br.com.ceut.controleestoque.funcionario;
+package br.com.ceut.controleestoque.funcionarios;
 
 import br.com.ceut.controleestoque.util.RepositorioException;
 

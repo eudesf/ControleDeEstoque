@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import br.com.ceut.controleestoque.funcionario.Funcionario;
+import br.com.ceut.controleestoque.funcionarios.Funcionario;
 
 public class CadastroFuncionarioGUI extends JDialog {
 
@@ -165,6 +165,7 @@ public class CadastroFuncionarioGUI extends JDialog {
 		matriculaField.setText(funcionario.getMatricula());
 		cpfField.setText(funcionario.getCPF());
 		nomeField.setText(funcionario.getNome());
+		enderecoField.setText(funcionario.getEndereco());
 		if (funcionario.getDataAdmissao() != null) {
 			dataAdmissaoField.setText(dateFormat.format(funcionario.getDataAdmissao()));
 		}
@@ -185,6 +186,7 @@ public class CadastroFuncionarioGUI extends JDialog {
 		funcionario = new Funcionario(matriculaField.getText());
 		funcionario.setNome(nomeField.getText());
 		funcionario.setCPF(cpfField.getText());
+		funcionario.setEndereco(enderecoField.getText());
 		if (dataAdmissaoField.getText().trim().length() > 0) {
 			try {
 				funcionario.setDataAdmissao(dateFormat.parse(dataAdmissaoField.getText()));
