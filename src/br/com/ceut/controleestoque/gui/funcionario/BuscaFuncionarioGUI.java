@@ -174,17 +174,19 @@ public class BuscaFuncionarioGUI extends JFrame {
 			JOptionPane.showMessageDialog(this, "Selecione o funcion‡rio a ser editado!");
 		} else {
 			CadastroFuncionarioGUI gui = new CadastroFuncionarioGUI(funcionariosReference.get(table.getSelectedRow()));
-			gui.getMatriculaField().setEnabled(false);
-			gui.setVisible(true);
-			try {
-				cadastroFuncionarios.atualizar(gui.getFuncionario());
-			} catch (FuncionarioNaoEncontradoException e) {
-				
-			} catch (RepositorioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (gui.getFuncionario() != null) {
+				gui.getMatriculaField().setEnabled(false);
+				gui.setVisible(true);
+				try {
+					cadastroFuncionarios.atualizar(gui.getFuncionario());
+				} catch (FuncionarioNaoEncontradoException e) {
+					
+				} catch (RepositorioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				refreshTable();
 			}
-			refreshTable();
 		}
 	}
 	
