@@ -180,10 +180,9 @@ public class BuscaFuncionarioGUI extends JFrame {
 				try {
 					cadastroFuncionarios.atualizar(gui.getFuncionario());
 				} catch (FuncionarioNaoEncontradoException e) {
-					
+					JOptionPane.showMessageDialog(this, "Funcion‡rio n‹o encontrado!");
 				} catch (RepositorioException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(this, "N‹o foi poss’vel alterar este funcion‡rio");
 				}
 				refreshTable();
 			}
