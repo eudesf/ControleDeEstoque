@@ -3,7 +3,7 @@ package br.com.ceut.controleestoque.funcionarios;
 import java.util.Date;
 
 /**
- * Classe abstrata que representa uma pessoa (f’sica ou jur’dica).
+ * Classe abstrata que representa uma pessoa (f’sica ou juridica).
  */
 public abstract class Pessoa {
 
@@ -13,7 +13,7 @@ public abstract class Pessoa {
 	// representa a data de cadastro da pessoa
 	private Date dataCadastro;
 	
-	// representa o endereo da pessoa
+	// representa o endereco da pessoa
 	private String endereco;
 
 	

@@ -53,7 +53,7 @@ public class RepositorioFuncionariosArray implements RepositorioFuncionarios {
 	}
 
 	public RepositorioFuncionarios getFuncionarios() {
-		// deveria retornar um clone por segurança
+		// deveria retornar um clone por seguranÁa
 		return this;
 	}
 

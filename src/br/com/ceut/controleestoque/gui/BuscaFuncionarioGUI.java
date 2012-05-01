@@ -1,4 +1,4 @@
-package br.com.ceut.controleestoque.gui.funcionario;
+package br.com.ceut.controleestoque.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
@@ -23,9 +24,8 @@ import br.com.ceut.controleestoque.funcionarios.Funcionario;
 import br.com.ceut.controleestoque.funcionarios.FuncionarioJaCadastradoException;
 import br.com.ceut.controleestoque.funcionarios.FuncionarioNaoEncontradoException;
 import br.com.ceut.controleestoque.funcionarios.IteratorFuncionarios;
-import br.com.ceut.controleestoque.funcionarios.RepositorioFuncionariosArray;
+import br.com.ceut.controleestoque.funcionarios.RepositorioFuncionariosBDR;
 import br.com.ceut.controleestoque.util.RepositorioException;
-import javax.swing.JScrollPane;
 
 public class BuscaFuncionarioGUI extends JFrame {
 
@@ -44,7 +44,7 @@ public class BuscaFuncionarioGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuscaFuncionarioGUI frame = new BuscaFuncionarioGUI(new CadastroFuncionarios(new RepositorioFuncionariosArray()));
+					BuscaFuncionarioGUI frame = new BuscaFuncionarioGUI(new CadastroFuncionarios(new RepositorioFuncionariosBDR()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -125,11 +125,11 @@ public class BuscaFuncionarioGUI extends JFrame {
 			IteratorFuncionarios iterator = cadastroFuncionarios.getFuncionarios().getIterator();
 
 			Vector<String> columnNames = new Vector<String>();
-			columnNames.add("Matrícula");
+			columnNames.add("Matricula");
 			columnNames.add("Nome");
-			columnNames.add("Endereço");
-			columnNames.add("Data Admissão");
-			columnNames.add("Data Demissão");
+			columnNames.add("EndereÁo");
+			columnNames.add("Data Admiss„o");
+			columnNames.add("Data Demiss„o");
 			columnNames.add("Ativo?");
 		
 			Vector<Vector<String>> data = new Vector<Vector<String>>();
@@ -153,12 +153,12 @@ public class BuscaFuncionarioGUI extends JFrame {
 				} else {
 					funcionarioData.add(dateFormat.format(funcionario.getDataDemissao()));
 				}
-				funcionarioData.add(funcionario.isAtivo() ? "Sim" : "Não");
+				funcionarioData.add(funcionario.isAtivo() ? "Sim" : "N„o");
 				data.add(funcionarioData);
 			}
 			table.setModel(new DefaultTableModel(data, columnNames));
 		} catch (RepositorioException ex) {
-			JOptionPane.showMessageDialog(this, "Foi encontrado um erro de comunicação com o repositório de dados!");
+			JOptionPane.showMessageDialog(this, "Foi encontrado um erro de comunicaÁ„o com o repositÛrio de dados!");
 		}
 	}
 	
@@ -170,16 +170,16 @@ public class BuscaFuncionarioGUI extends JFrame {
 				cadastroFuncionarios.cadastrar(gui.getFuncionario());
 				refreshTable();
 			} catch (FuncionarioJaCadastradoException e) {
-				JOptionPane.showMessageDialog(this, "Funcionário Já Cadastrado!");
+				JOptionPane.showMessageDialog(this, "Funcion·rio J· Cadastrado!");
 			} catch (RepositorioException e) {
-				JOptionPane.showMessageDialog(this, "Não foi possível cadastrar este funcionário!");
+				JOptionPane.showMessageDialog(this, "N„o foi possivel cadastrar este funcion·rio!");
 			}
 		}
 	}
 	
 	private void editar() {
 		if (table.getSelectedRow() == -1) {
-			JOptionPane.showMessageDialog(this, "Selecione o funcionário a ser editado!");
+			JOptionPane.showMessageDialog(this, "Selecione o funcion·rio a ser editado!");
 		} else {
 			CadastroFuncionarioGUI gui = new CadastroFuncionarioGUI(funcionariosReference.get(table.getSelectedRow()));
 			gui.getMatriculaField().setEnabled(false);
@@ -188,9 +188,9 @@ public class BuscaFuncionarioGUI extends JFrame {
 				try {
 					cadastroFuncionarios.atualizar(gui.getFuncionario());
 				} catch (FuncionarioNaoEncontradoException e) {
-					JOptionPane.showMessageDialog(this, "Funcionário não encontrado!");
+					JOptionPane.showMessageDialog(this, "Funcion·rio n„o encontrado!");
 				} catch (RepositorioException e) {
-					JOptionPane.showMessageDialog(this, "Não foi possível alterar este funcionário");
+					JOptionPane.showMessageDialog(this, "N„o foi possivel alterar este funcion·rio");
 				}
 				refreshTable();
 			}
@@ -199,15 +199,15 @@ public class BuscaFuncionarioGUI extends JFrame {
 	
 	private void remover() {
 		if (table.getSelectedRow() == -1) {
-			JOptionPane.showMessageDialog(this, "Selecione o funcionário a ser removido!");
+			JOptionPane.showMessageDialog(this, "Selecione o funcion·rio a ser removido!");
 		} else {
 			try {
 				cadastroFuncionarios.remover(funcionariosReference.get(table.getSelectedRow()).getMatricula());
 				refreshTable();
 			} catch (FuncionarioNaoEncontradoException e) {
-				JOptionPane.showMessageDialog(this, "O funcionário selecionado não foi encontrado!");
+				JOptionPane.showMessageDialog(this, "O funcion·rio selecionado n„o foi encontrado!");
 			} catch (RepositorioException e) {
-				JOptionPane.showMessageDialog(this, "Não foi possível remover este funcionário!");
+				JOptionPane.showMessageDialog(this, "N„o foi possivel remover este funcion·rio!");
 			}
 		}
 	}
