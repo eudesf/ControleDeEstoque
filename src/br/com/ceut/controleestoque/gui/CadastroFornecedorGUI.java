@@ -127,7 +127,7 @@ public class CadastroFornecedorGUI extends JDialog {
 		cnpjField.setColumns(10);
 		
 		JLabel lblExDdmmaaaa = new JLabel("Ex.: DD/MM/AAAA");
-		lblExDdmmaaaa.setBounds(278, 183, 99, 16);
+		lblExDdmmaaaa.setBounds(278, 183, 134, 16);
 		panel_1.add(lblExDdmmaaaa);
 
 		setLocationRelativeTo(null);
